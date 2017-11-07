@@ -814,7 +814,7 @@ voPersonStatus: active
  </tr>
 
  <tr>
-  <td>voPersonAttributeUID</td>
+  <td>voPersonApplicationUID</td>
   <td>voPerson</td>
   <td>Application specific identifiers.</td>
  </tr>
