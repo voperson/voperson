@@ -131,7 +131,8 @@ the source data.
 When receiving external identifiers, for example via the SAML protocol, the following order
 of preference is recommended:
 
-1. eduPersonOrcid
+1. eduPersonOrcid (When the asserting party has properly collected the ORCID ID in accordance
+   with ORCID guidelines.)
 1. eduPersonUniqueId
 1. eduPersonTargetedID or SAML2 Persistent NameID (Only suitable when all of the organization's
    service providers appear as a single entityID to the federation, typically by being placed
