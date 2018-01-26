@@ -573,7 +573,10 @@ voPersonCertificateDN;scope-cert1: /DC=org/DC=cilogon/C=US/O=CILogon/CN=CILogon 
 ### Definition
 
 An explicitly scoped identifier for a person, typically as issued by an external
-authentication service such as a federated or social identity provider.
+authentication service such as a federated or social identity provider. This is
+a user-centric identifier, in the context of "bring your own identity". If the
+user doesn't know the identifier itself, they at least know the credentials
+necessary to generate it.
 
 ### Alternate Approaches
 
@@ -684,6 +687,8 @@ voPersonID: V097531
 ### Definition
 
 An implicitly scoped identifier for a person, typically as issued by a system of record.
+This is a "behind the scenes" or system-centric identifier, and generally cannot be used
+for authentication. The user may not even know it exists. 
 
 ### Alternate Approaches
 
