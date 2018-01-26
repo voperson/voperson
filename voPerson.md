@@ -14,6 +14,7 @@
   * [`prior` Attribute Description Option](#prior-attribute-description-option)
   * [`role-*` Attribute Description Option](#role--attribute-description-option)
   * [`scope-*` Attribute Description Option](#scope--attribute-description-option)
+  * [`time-#` Attribute Description Option](#time--attribute-description-option)
 * [voPerson Object Class and Attributes](#voperson-object-class-and-attributes)
   * [voPerson Object Class Definition](#voperson-object-class-definition)
   * [`voPersonApplicationUID` Attribute Definition](#vopersonapplicationuid-attribute-definition)
@@ -22,6 +23,7 @@
   * [`voPersonCertificateIssuerDN` Attribute Definition](#vopersoncertificateissuerdn-attribute-definition)
   * [`voPersonExternalID` Attribute Definition](#vopersonexternalid-attribute-definition)
   * [`voPersonID` Attribute Definition](#vopersonid-attribute-definition)
+  * [`voPersonPolicyAgreement` Attribute Definition](#vopersonpolicyagreement-attribute-definition)
   * [`voPersonSoRID` Attribute Definition](#vopersonsorid-attribute-definition)
   * [`voPersonStatus` Attribute Definition](#vopersonstatus-attribute-definition)
 * [Recommended Attribute Usage](#recommended-attribute-usage)
@@ -302,6 +304,19 @@ but should otherwise be treated as opaque except for comparison purposes
 voPersonSoRID;scope-hrms: E00747400
 ```
 
+## `time-#` Attribute Description Option
+
+Used to indicate the most recent update time of the attribute. The value is an
+integer in Unix (or epoch) time. `time-` may be applied to any attribute in the
+voPerson schema, or to any other schema if its use would be non-conflicting with
+the definition of that schema.
+
+### Example
+
+```
+voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-use
+```
+
 # voPerson Object Class and Attributes
 
 Version 1
@@ -318,6 +333,7 @@ Version 1
             voPersonCertificateIssuerDN $
             voPersonExternalID $
             voPersonID $ 
+            voPersonPolicyAgreement $ 
             voPersonSoRID $
             voPersonStatus )
 )
@@ -649,7 +665,7 @@ The platform or enterprise identifier.
 voPersonID: V097531
 ```
 
-## `voPersonSoRID` Attribute Definition
+## `voPersonPolicyAgreement` Attribute Definition
 
 <table>
  <tr>
@@ -661,6 +677,58 @@ voPersonID: V097531
   <th>RFC4512 Definition</th>
   <td>
 <pre>( 1.3.6.1.4.1.34998.3.3.7
+        NAME 'voPersonPolicyAgreement'
+        DESC 'voPerson Policy Agreement Indicator'
+        EQUALITY caseIgnoreMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes</td>
+ </tr>
+ 
+ <tr>
+  <th>Attribute Options</th>
+  <td>
+   <ul>
+    <li><code>time-#</code>: Denotes time the policy was agreed to
+   </ul>
+  </td>
+ </tr>
+</table>
+
+### Definition
+
+The URL describing a policy that has been agreed to by the person identified by
+this record.
+
+### Alternate Approaches
+
+* A similar approach is possible leveraging the already existing *labeleduri* attribute,
+  but even with the use of attribute options it would not be clear that this is a
+  document the subject has agreed to, as opposed to being a document created by or
+  for the subject.
+  
+### Example
+
+```
+voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-use
+```
+
+## `voPersonSoRID` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.34998.3.3.8</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.34998.3.3.8
         NAME 'voPersonSoRID'
         DESC 'voPerson External Identifier'
         EQUALITY caseIgnoreMatch
@@ -707,13 +775,13 @@ voPersonSoRID;scope-hrms: E00747400
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.8</td>
+  <td>1.3.6.1.4.1.34998.3.3.9</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.8
+<pre>( 1.3.6.1.4.1.34998.3.3.9
         NAME 'voPersonStatus'
         DESC 'voPerson Status'
         EQUALITY caseIgnoreMatch
@@ -857,6 +925,12 @@ voPersonStatus: active
  </tr>
 
  <tr>
+  <td>voPersonPolicyAgreement</td>
+  <td>voPerson</td>
+  <td>Policy agreements.</td>
+ </tr>
+
+ <tr>
   <td>voPersonSoRID</td>
   <td>voPerson</td>
   <td>Implicitly scoped identifiers obtained from systems of record.</td>
@@ -895,6 +969,7 @@ voPersonExternalID: plee@university.edu
 voPersonExternalID: 610400998542241058734@google.com
 voPersonID: V097531
 voPersonID;prior: V097522
+voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-use
 voPersonSoRID;scope-hrms: E00747400
 voPersonStatus: active
 ```
