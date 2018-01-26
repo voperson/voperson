@@ -462,7 +462,7 @@ voPersonAuthorName;prior: P Q Smith
   <td>
    <ul>
     <li><code>prior</code>: Denotes prior Certificate DN, no longer current</li>
-    <li><code>scope</code>: Identifies source to correlate with <code>voPersonCertificateIssuerDN</code></li>
+    <li><code>scope-</code>: Identifies source to correlate with <code>voPersonCertificateIssuerDN</code></li>
    </ul>
   </td>
  </tr>
@@ -514,7 +514,7 @@ voPersonCertificateDN;scope-cert1: CN=Pat Lee A251,O=Example,C=US,DC=cilogon,DC=
   <th>Attribute Options</th>
   <td>
    <ul>
-    <li><code>scope</code>: Identifies source to correlate with <code>voPersonCertificateDN</code></li>
+    <li><code>scope-</code>: Identifies source to correlate with <code>voPersonCertificateDN</code></li>
    </ul>
   </td>
  </tr>
@@ -725,7 +725,8 @@ voPersonSoRID;scope-hrms: E00747400
   <th>Attribute Options</th>
   <td>
    <ul>
-    <li><code>role-*</code>: Denotes a role specific status if present (otherwise overall person status)</li>
+    <li><code>role-</code>: Denotes a role specific status if present (otherwise overall person status)</li>
+    <li><code>scope-<i>sourcelabel</i></code>: Denotes status is as asserted by source system</li>
    </ul>
   </td>
  </tr>
