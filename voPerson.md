@@ -549,7 +549,7 @@ attribute option is required to denote the correlating certificate.
 ### Example
 
 ```
-voPersonCertificateDN;scope-cert1: /DC=org/DC=cilogon/C=US/O=CILogon/CN=CILogon Basic CA 1
+voPersonCertificateDN;scope-cert1: CN=CILogon Basic CA 1, O=CILogon, C=US, DC=cilogon, DC=org
 ```
 
 ## `voPersonExternalID` Attribute Definition
@@ -964,7 +964,7 @@ uid: plee
 voPersonApplicationUID;app-wiki: plee@myvo.org
 voPersonAuthorName: P Q Lee
 voPersonCertificateDN;scope-cert1: CN=Pat Lee A251,O=Example,C=US,DC=cilogon,DC=org
-voPersonCertificateIssuerDN;scope-cert1: /DC=org/DC=cilogon/C=US/O=CILogon/CN=CILogon Basic CA 1
+voPersonCertificateIssuerDN;scope-cert1: CN=CILogon Basic CA 1, O=CILogon, C=US, DC=cilogon, DC=org
 voPersonExternalID: plee@university.edu
 voPersonExternalID: 610400998542241058734@google.com
 voPersonID: V097531
