@@ -324,7 +324,7 @@ Version 1
 ## voPerson Object Class Definition
 
 ```
-( 1.3.6.1.4.1.34998.3.3
+( 1.3.6.1.4.1.34998.3.3.1
 	NAME 'voPerson'
 	AUXILIARY
 	MAY ( voPersonApplicationUID $
@@ -344,13 +344,13 @@ Version 1
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1</td>
+  <td>1.3.6.1.4.1.34998.3.3.1.1</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1
+<pre>( 1.3.6.1.4.1.34998.3.3.1.1
         NAME 'voPersonApplicationUID'
         DESC 'voPerson Application-Specific User Identifier'
         EQUALITY caseIgnoreMatch
@@ -404,13 +404,13 @@ voPersonApplicationUID;app-wiki;prior: patlee@myvo.org
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.2</td>
+  <td>1.3.6.1.4.1.34998.3.3.1.2</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.2
+<pre>( 1.3.6.1.4.1.34998.3.3.1.2
         NAME 'voPersonAuthorName'
         DESC 'voPerson Author Name'
         EQUALITY caseIgnoreMatch
@@ -454,13 +454,13 @@ voPersonAuthorName;prior: P Q Smith
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.3</td>
+  <td>1.3.6.1.4.1.34998.3.3.1.3</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.3
+<pre>( 1.3.6.1.4.1.34998.3.3.1.3
         NAME 'voPersonCertificateDN'
         DESC 'voPerson Certificate Distinguished Name'
         EQUALITY distinguishedNameMatch
@@ -507,13 +507,13 @@ voPersonCertificateDN;scope-cert1: CN=Pat Lee A251,O=Example,C=US,DC=cilogon,DC=
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.4</td>
+  <td>1.3.6.1.4.1.34998.3.3.1.4</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.4
+<pre>( 1.3.6.1.4.1.34998.3.3.1.4
         NAME 'voPersonCertificateIssuerDN'
         DESC 'voPerson Certificate Issuer DN'
         EQUALITY distinguishedNameMatch
@@ -557,13 +557,13 @@ voPersonCertificateDN;scope-cert1: /DC=org/DC=cilogon/C=US/O=CILogon/CN=CILogon 
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.5</td>
+  <td>1.3.6.1.4.1.34998.3.3.1.5</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.5
+<pre>( 1.3.6.1.4.1.34998.3.3.1.5
         NAME 'voPersonExternalID'
         DESC 'voPerson Scoped External Identifier'
         EQUALITY caseIgnoreMatch
@@ -614,13 +614,13 @@ voPersonExternalID: 610400998542241058734@google.com
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.6</td>
+  <td>1.3.6.1.4.1.34998.3.3.1.6</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.6
+<pre>( 1.3.6.1.4.1.34998.3.3.1.6
         NAME 'voPersonID'
         DESC 'voPerson Unique Identifier'
         EQUALITY caseIgnoreMatch
@@ -670,13 +670,13 @@ voPersonID: V097531
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.7</td>
+  <td>1.3.6.1.4.1.34998.3.3.1.7</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.7
+<pre>( 1.3.6.1.4.1.34998.3.3.1.7
         NAME 'voPersonPolicyAgreement'
         DESC 'voPerson Policy Agreement Indicator'
         EQUALITY caseIgnoreMatch
@@ -722,13 +722,13 @@ voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-us
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.8</td>
+  <td>1.3.6.1.4.1.34998.3.3.1.8</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.8
+<pre>( 1.3.6.1.4.1.34998.3.3.1.8
         NAME 'voPersonSoRID'
         DESC 'voPerson External Identifier'
         EQUALITY caseIgnoreMatch
@@ -775,13 +775,13 @@ voPersonSoRID;scope-hrms: E00747400
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.9</td>
+  <td>1.3.6.1.4.1.34998.3.3.1.9</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.9
+<pre>( 1.3.6.1.4.1.34998.3.3.1.9
         NAME 'voPersonStatus'
         DESC 'voPerson Status'
         EQUALITY caseIgnoreMatch
@@ -791,7 +791,7 @@ voPersonSoRID;scope-hrms: E00747400
  
  <tr>
   <th>Multiple Values?</th>
-  <td>No</td>
+  <td>Yes, when used with `scope-` attribute option</td>
  </tr>
  
  <tr>
