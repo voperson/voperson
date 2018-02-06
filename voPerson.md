@@ -6,7 +6,7 @@
   * [General Application Identifier](#general-application-identifier)
   * [Application Specific Identifiers](#application-specific-identifiers)
   * [External Identifiers](#external-identifiers)
-     * [eduPerson Considerations](#eduperson-considerations)
+     * [eduPerson and SAML Considerations](#eduperson-and-saml-considerations)
   * [Comparison of Identifier Characteristics](#comparison-of-identifier-characteristics)
 * [voPerson Attribute Options](#voperson-attribute-options)
   * [`app-*` Attribute Description Option](#app--attribute-description-option)
@@ -983,9 +983,9 @@ voPersonStatus: active
 1. [RFC 1274](https://tools.ietf.org/html/rfc1274) The COSINE and Internet X.500 Schema
 1. [RFC 2798](https://tools.ietf.org/html/rfc2798) Definition of the inetOrgPerson LDAP Object Class
 1. [RFC 4512](https://tools.ietf.org/html/rfc4512) Lightweight Directory Access Protocol (LDAP): Directory Information Models
-1. [SAML V2.0 Subject Identifier Attributes Profile Version 1.0](https://www.oasis-open.org/committees/download.php/61558/saml-subject-id-attr-v1.0-wd02.pdf)
 1. [RFC 4519](https://tools.ietf.org/html/rfc4519) Lightweight Directory Access Protocol (LDAP): Schema for User Applications
 1. [RFC 4520](https://tools.ietf.org/html/rfc4520) Internet Assigned Numbers Authority (IANA) Considerations for the Lightweight Directory Access Protocol (LDAP)
 1. [RFC 4523](https://tools.ietf.org/html/rfc4523) Lightweight Directory Access Protocol (LDAP) Schema Definitions for X.509 Certificates
 1. [RFC 4524](https://tools.ietf.org/html/rfc4524) COSINE LDAP/X.500 Schema
 1. [RFC 6648](https://tools.ietf.org/html/rfc6648) Deprecating the "X-" Prefix and Similar Constructs in Application Protocols
+1. [SAML V2.0 Subject Identifier Attributes Profile Version 1.0](https://www.oasis-open.org/committees/download.php/61558/saml-subject-id-attr-v1.0-wd02.pdf)
