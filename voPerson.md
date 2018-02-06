@@ -36,9 +36,9 @@
 
 *voPerson* is both a set of recommendations and an ldap attribute schema (object class),
 intended to provide a common reference point for attribute management within a Virtual
-Organization (VO). The primary goal is to provide a common deployment model to facilitate
-application integration within the organization. Although the primary audience is virtual
-organizations, this object class may be useful for others as well. 
+Organization (VO)<sup>1</sup>. The primary goal is to provide a common deployment model to
+facilitate application integration within the organization. Although the primary audience
+is virtual organizations, this object class may be useful for others as well. 
 
 It is expected that voPerson will be used alongside the *[eduPerson](http://macedir.org/specs/eduperson)*
 object class, which in turn is expected to be used alongside *[person](https://tools.ietf.org/html/rfc4519)*,
@@ -49,6 +49,10 @@ from these object classes.
 voPerson makes use of *attribute options*, a formal part of the LDAP specification ([RFC 4512](https://tools.ietf.org/html/rfc4512)
 §2.5) not widely used. Attribute options can provide metadata about values for the attribute.
 It may be necessary to configure the directory server to deliver attribute options.
+
+<sup>1</sup>A VO is an organization that includes members whose identity information is
+obtained from multiple sources, at least one of which is external to the organization.
+The organization may or may not be a legal entity.
 
 # Discussion on Identifiers
 
