@@ -6,7 +6,7 @@
   * [General Application Identifier](#general-application-identifier)
   * [Application Specific Identifiers](#application-specific-identifiers)
   * [External Identifiers](#external-identifiers)
-     * [eduPerson Considerations](#eduperson-considerations)
+     * [eduPerson and SAML Considerations](#eduperson-and-saml-considerations)
   * [Comparison of Identifier Characteristics](#comparison-of-identifier-characteristics)
 * [voPerson Attribute Options](#voperson-attribute-options)
   * [`app-*` Attribute Description Option](#app--attribute-description-option)
@@ -128,14 +128,16 @@ This mapping might be done at a proxy or gateway, or at each application. Data s
 identifiers must be tracked so that the appropriate records can be updated on changes to
 the source data.
 
-### eduPerson Considerations
+### eduPerson and SAML Considerations
 
 When receiving external identifiers, for example via the SAML protocol, the following order
 of preference is recommended:
 
 1. eduPersonOrcid (When the asserting party has properly collected the ORCID ID in accordance
    with ORCID guidelines.)
+1. [urn:oasis:names:tc:SAML:attribute:subject-id](https://www.oasis-open.org/committees/download.php/61558/saml-subject-id-attr-v1.0-wd02.pdf)
 1. eduPersonUniqueId
+1. [urn:oasis:names:tc:SAML:attribute:pairwise-id](https://www.oasis-open.org/committees/download.php/61558/saml-subject-id-attr-v1.0-wd02.pdf)
 1. eduPersonTargetedID or SAML2 Persistent NameID (Only suitable when all of the organization's
    service providers appear as a single entityID to the federation, typically by being placed
    behind a proxy.)
@@ -986,3 +988,4 @@ voPersonStatus: active
 1. [RFC 4523](https://tools.ietf.org/html/rfc4523) Lightweight Directory Access Protocol (LDAP) Schema Definitions for X.509 Certificates
 1. [RFC 4524](https://tools.ietf.org/html/rfc4524) COSINE LDAP/X.500 Schema
 1. [RFC 6648](https://tools.ietf.org/html/rfc6648) Deprecating the "X-" Prefix and Similar Constructs in Application Protocols
+1. [SAML V2.0 Subject Identifier Attributes Profile Version 1.0](https://www.oasis-open.org/committees/download.php/61558/saml-subject-id-attr-v1.0-wd02.pdf)
