@@ -50,9 +50,9 @@ voPerson makes use of *attribute options*, a formal part of the LDAP specificati
 §2.5) not widely used. Attribute options can provide metadata about values for the attribute.
 It may be necessary to configure the directory server to deliver attribute options.
 
-<sup>1</sup>A VO is an organization that includes members whose identity information is
+<sup>1</sup>_A VO is an organization that includes members whose identity information is
 obtained from multiple sources, at least one of which is external to the organization.
-The organization may or may not be a legal entity.
+The organization may or may not be a legal entity._
 
 # Discussion on Identifiers
 
