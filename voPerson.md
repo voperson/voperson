@@ -139,9 +139,9 @@ of preference is recommended:
 
 1. eduPersonOrcid (When the asserting party has properly collected the ORCID ID in accordance
    with ORCID guidelines.)
-1. [urn:oasis:names:tc:SAML:attribute:subject-id](https://www.oasis-open.org/committees/download.php/61558/saml-subject-id-attr-v1.0-wd02.pdf)
+1. [urn:oasis:names:tc:SAML:attribute:subject-id](https://wiki.oasis-open.org/security/SAMLSubjectIDAttr)
 1. eduPersonUniqueId
-1. [urn:oasis:names:tc:SAML:attribute:pairwise-id](https://www.oasis-open.org/committees/download.php/61558/saml-subject-id-attr-v1.0-wd02.pdf)
+1. [urn:oasis:names:tc:SAML:attribute:pairwise-id](https://wiki.oasis-open.org/security/SAMLSubjectIDAttr)
 1. eduPersonTargetedID or SAML2 Persistent NameID (Only suitable when all of the organization's
    service providers appear as a single entityID to the federation, typically by being placed
    behind a proxy.)
