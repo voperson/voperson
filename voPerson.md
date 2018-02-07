@@ -992,4 +992,4 @@ voPersonStatus: active
 1. [RFC 4523](https://tools.ietf.org/html/rfc4523) Lightweight Directory Access Protocol (LDAP) Schema Definitions for X.509 Certificates
 1. [RFC 4524](https://tools.ietf.org/html/rfc4524) COSINE LDAP/X.500 Schema
 1. [RFC 6648](https://tools.ietf.org/html/rfc6648) Deprecating the "X-" Prefix and Similar Constructs in Application Protocols
-1. [SAML V2.0 Subject Identifier Attributes Profile Version 1.0](https://www.oasis-open.org/committees/download.php/61558/saml-subject-id-attr-v1.0-wd02.pdf)
+1. [SAML V2.0 Subject Identifier Attributes Profile Version 1.0](https://wiki.oasis-open.org/security/SAMLSubjectIDAttr)
