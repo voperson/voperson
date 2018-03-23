@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1206248.svg)](https://doi.org/10.5281/zenodo.1206248)
+
 # voperson
 
 * [voPerson Object Class and Recommendations](voPerson.md)
