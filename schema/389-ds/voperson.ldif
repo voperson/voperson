@@ -1,0 +1,66 @@
+dn: cn=schema
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+cn: schema
+#
+attributeTypes: ( 1.3.6.1.4.1.34998.3.3.1.1 
+        NAME 'voPersonApplicationUID' 
+        DESC 'voPerson Application-Specific User Identifier' 
+        EQUALITY caseIgnoreMatch 
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+#
+attributeTypes: ( 1.3.6.1.4.1.34998.3.3.1.2 
+        NAME 'voPersonAuthorName' 
+        DESC 'voPerson Author Name' 
+        EQUALITY caseIgnoreMatch 
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+#
+attributeTypes: ( 1.3.6.1.4.1.34998.3.3.1.3 
+        NAME 'voPersonCertificateDN'
+        DESC 'voPerson Certificate Distinguished Name' 
+        EQUALITY distinguishedNameMatch 
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+#
+attributeTypes: ( 1.3.6.1.4.1.34998.3.3.1.4 
+        NAME 'voPersonCertificateIssuerDN' 
+        DESC 'voPerson Certificate Issuer DN' 
+        EQUALITY distinguishedNameMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+#
+attributeTypes: ( 1.3.6.1.4.1.34998.3.3.1.5 
+        NAME 'voPersonExternalID' 
+        DESC 'voPerson Scoped External Identifier' 
+        EQUALITY caseIgnoreMatch 
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+#
+attributeTypes: ( 1.3.6.1.4.1.34998.3.3.1.6 
+        NAME 'voPersonID' 
+        DESC 'voPerson Unique Identifier' 
+        EQUALITY caseIgnoreMatch 
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+#
+attributeTypes: ( 1.3.6.1.4.1.34998.3.3.1.7 
+        NAME 'voPersonPolicyAgreement' 
+        DESC 'voPerson Policy Agreement Indicator' 
+        EQUALITY caseIgnoreMatch 
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+#
+attributeTypes: ( 1.3.6.1.4.1.34998.3.3.1.8 
+        NAME 'voPersonSoRID' 
+        DESC 'voPerson External Identifier'
+        EQUALITY caseIgnoreMatch 
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+#
+attributeTypes: ( 1.3.6.1.4.1.34998.3.3.1.9 
+        NAME 'voPersonStatus' 
+        DESC 'voPerson Status' 
+        EQUALITY caseIgnoreMatch 
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+#
+objectClasses: ( 1.3.6.1.4.1.34998.3.3.1 
+        NAME 'voPerson' 
+        AUXILIARY
+        MAY ( voPersonApplicationUID $ voPersonAuthorName $ voPersonCertificateDN $
+              voPersonCertificateIssuerDN $ voPersonExternalID $ voPersonID $
+              voPersonPolicyAgreement $ voPersonSoRID $ voPersonStatus ) )
