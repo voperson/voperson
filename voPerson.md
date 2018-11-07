@@ -1,4 +1,4 @@
-# voPerson
+# voPerson v1.1.0
 
 * [Introduction](#introduction)
 * [Discussion on Identifiers](#discussion-on-identifiers)
@@ -17,13 +17,16 @@
   * [`time-#` Attribute Description Option](#time--attribute-description-option)
 * [voPerson Object Class and Attributes](#voperson-object-class-and-attributes)
   * [voPerson Object Class Definition](#voperson-object-class-definition)
+  * [`voPersonAffiliation` Attribute Definition](#vopersonaffiliation-attribute-definition)
   * [`voPersonApplicationUID` Attribute Definition](#vopersonapplicationuid-attribute-definition)
   * [`voPersonAuthorName` Attribute Definition](#vopersonauthorname-attribute-definition)
   * [`voPersonCertificateDN` Attribute Definition](#vopersoncertificatedn-attribute-definition)
   * [`voPersonCertificateIssuerDN` Attribute Definition](#vopersoncertificateissuerdn-attribute-definition)
+  * [`voPersonExternalAffiliation` Attribute Definition](#vopersonexternalaffiliation-attribute-definition)
   * [`voPersonExternalID` Attribute Definition](#vopersonexternalid-attribute-definition)
   * [`voPersonID` Attribute Definition](#vopersonid-attribute-definition)
   * [`voPersonPolicyAgreement` Attribute Definition](#vopersonpolicyagreement-attribute-definition)
+  * [`voPersonScopedAffiliation` Attribute Definition](#vopersonscopedaffiliation-attribute-definition)
   * [`voPersonSoRID` Attribute Definition](#vopersonsorid-attribute-definition)
   * [`voPersonStatus` Attribute Definition](#vopersonstatus-attribute-definition)
 * [Recommended Attribute Usage](#recommended-attribute-usage)
@@ -243,6 +246,18 @@ attribute options use neither prefix.
   additional attribute description options have been added to the [IANA registry](https://www.iana.org/assignments/ldap-parameters/ldap-parameters.xhtml#ldap-parameters-4).
   The likelihood of conflict in practice is therefore quite low. 
 
+## Important Considerations When Using Attribute Options
+
+Care should be taken when using Attribute Options, as a client unaware of
+attribute options may not comprehend the intent, and may behave incorrectly.
+For example, if a client that does not parse the `internal` tag may not realize a
+value should not be released further, and if the client does not parse the `prior`
+tag it may not realize the attribute value is no longer valid.
+
+If downstream clients cannot be tightly managed, it may be desirable to place
+appropriate ACLs on Attribute Options (if supported by the LDAP server), or even
+to write to two separate LDAP servers (one with Attribute Options and one without).
+
 ## `app-*` Attribute Description Option
 
 Used to identify an application specific value for an attribute. `app-` is considered
@@ -333,16 +348,74 @@ Version 1
 ( 1.3.6.1.4.1.34998.3.3.1
 	NAME 'voPerson'
 	AUXILIARY
-	MAY ( voPersonApplicationUID $
+	MAY ( voPersonAffiliation $
+            voPersonApplicationUID $
             voPersonAuthorName $
             voPersonCertificateDN $
             voPersonCertificateIssuerDN $
+            voPersonExternalAffiliation $
             voPersonExternalID $
             voPersonID $ 
             voPersonPolicyAgreement $ 
+            voPersonScopedAffiliation $
             voPersonSoRID $
             voPersonStatus )
 )
+```
+
+## `voPersonAffiliation` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.34998.3.3.1.10</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.34998.3.3.1.10
+        NAME 'voPersonAffiliation'
+        DESC 'voPerson Affiliation Within Local Scope'
+        EQUALITY caseIgnoreMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes</td>
+ </tr>
+ 
+ <tr>
+  <th>Attribute Options</th>
+  <td>
+   <ul>
+    <li><code>prior</code>: Denotes prior user affiliation, no longer current</li>
+    <li><code>role-</code>: Denotes a role specific affiliation if present (otherwise overall person affiliation)</li>
+    <li><code>scope-<i>sourcelabel</i></code>: Denotes affiliation as asserted by source system</li>
+   </ul>
+  </td>
+ </tr>
+</table>
+
+### Definition
+
+An organization-specific affiliation, intended to parallel but expand upon
+`eduPersonAffiliation`, allowing for finer grained descriptions of affiliations
+(such as graduate student, undergraduate, research, PI, administrator, etc).
+
+### Alternate Approaches
+
+* This attribute could be defined with a controlled vocabulary (similar to
+  `eduPersonAffiliation`), however there is not currently community consensus
+  as to what those values would be. A constrained attribute can be added later.
+
+### Example
+
+```
+voPersonAffiliation: gradstudent
+voPersonAffiliation: researcher
 ```
 
 ## `voPersonApplicationUID` Attribute Definition
@@ -558,6 +631,57 @@ attribute option is required to denote the correlating certificate.
 voPersonCertificateDN;scope-cert1: CN=CILogon Basic CA 1, O=CILogon, C=US, DC=cilogon, DC=org
 ```
 
+## `voPersonExternalAffiliation` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.34998.3.3.1.11</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.34998.3.3.1.11
+        NAME 'voPersonExternalAffiliation'
+        DESC 'voPerson Scoped External Affiliation'
+        EQUALITY caseIgnoreMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes</td>
+ </tr>
+ 
+ <tr>
+  <th>Attribute Options</th>
+  <td>
+   <ul>
+    <li><code>prior</code>: Denotes prior user affiliation, no longer current</li>
+   </ul>
+  </td>
+ </tr>
+</table>
+
+### Definition
+
+An organization-specific affiliation as per `voPersonAffiliation`, but
+obtained from an external organization, and therefore scoped.
+
+### Alternate Approaches
+
+* This attribute could be consolidated with `voPersonAffiliation`, however it
+  is clearer to separate local from external attributes in storage.
+
+### Example
+
+```
+voPersonExternalAffiliation: gradstudent@yourvo.org
+voPersonExternalAffiliation: protocol-rpg@university.edu
+```
+
 ## `voPersonExternalID` Attribute Definition
 
 <table>
@@ -723,6 +847,51 @@ this record.
 voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-use
 ```
 
+## `voPersonScopedAffiliation` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.34998.3.3.1.12</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.34998.3.3.1.12
+        NAME 'voPersonScopedAffiliation'
+        DESC 'voPerson Affiliation With Explicit Local Scope'
+        EQUALITY caseIgnoreMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes</td>
+ </tr>
+ 
+ <tr>
+  <th>Attribute Options</th>
+  <td>No</td>
+ </tr>
+</table>
+
+### Definition
+
+Used for transport only, this attribute maps `voPersonAffiliation` when used
+across the wire. The resulting value should be stored in `voPersonExternalAffiliation`
+by the receiving entity.
+
+### Alternate Approaches
+
+* `voPersonAffiliation` could be used instead, but could cause confusion due to
+  representation of scoping.
+
+### Example
+
+Will vary by protocol.
+
 ## `voPersonSoRID` Attribute Definition
 
 <table>
@@ -865,6 +1034,12 @@ voPersonStatus: active
  </tr>
 
  <tr>
+  <td>eduPersonAffiliation</td>
+  <td>eduPerson</td>
+  <td>Current broad affiliation within the organization.</td>
+ </tr>
+
+ <tr>
   <td>eduPersonNickName</td>
   <td>eduPerson</td>
   <td>Self selected/preferred given name.</td>
@@ -895,6 +1070,12 @@ voPersonStatus: active
  </tr>
 
  <tr>
+  <td>voPersonAffiliation</td>
+  <td>voPerson</td>
+  <td>Current fine grained affiliation within the organization.</td>
+ </tr>
+
+ <tr>
   <td>voPersonApplicationUID</td>
   <td>voPerson</td>
   <td>Application specific identifiers.</td>
@@ -916,6 +1097,12 @@ voPersonStatus: active
   <td>voPersonCertificateIssuerDN</td>
   <td>voPerson</td>
   <td>X.509 certificate issuer subject distinguished name.</td>
+ </tr>
+
+ <tr>
+  <td>voPersonExternalAffiliation</td>
+  <td>voPerson</td>
+  <td>Current affiliations obtained from federated or social identity providers.</td>
  </tr>
 
  <tr>
@@ -961,16 +1148,21 @@ objectClass: eduMember
 objectClass: voPerson
 cn: Patricia Q Lee
 displayName: Pat Lee
+eduPersonAffiliation: staff
+eduPersonAffiliation: member
 eduPersonNickName: Pat
 eduPersonOrcid: http://orcid.org/0000-0002-1825-0097
 givenName: Patricia
 sn: Lee
 sn;prior: Smith
 uid: plee
+voPersonAffiliation: gradstudent
+voPersonAffiliation: researcher
 voPersonApplicationUID;app-wiki: plee@myvo.org
 voPersonAuthorName: P Q Lee
 voPersonCertificateDN;scope-cert1: CN=Pat Lee A251,O=Example,C=US,DC=cilogon,DC=org
 voPersonCertificateIssuerDN;scope-cert1: CN=CILogon Basic CA 1, O=CILogon, C=US, DC=cilogon, DC=org
+voPersonExternalAffiliation: visitingscholar@yourvo.org
 voPersonExternalID: plee@university.edu
 voPersonExternalID: 610400998542241058734@google.com
 voPersonID: V097531
@@ -993,3 +1185,27 @@ voPersonStatus: active
 1. [RFC 4524](https://tools.ietf.org/html/rfc4524) COSINE LDAP/X.500 Schema
 1. [RFC 6648](https://tools.ietf.org/html/rfc6648) Deprecating the "X-" Prefix and Similar Constructs in Application Protocols
 1. [SAML V2.0 Subject Identifier Attributes Profile Version 1.0](https://wiki.oasis-open.org/security/SAMLSubjectIDAttr)
+
+# Changelog
+
+voPerson version numbers follows [Semantic Versioning](https://semver.org/).
+
+A patch version change (eg: v1.0.0 to v1.0.1) should not require an update to
+the LDAP server, except to correct an error.
+
+A minor version change (eg: v1.0.0 to v1.1.0) may require an update to the LDAP
+server, as it must be made aware of the new attributes. However, a minor
+version change will not break existing LDAP entries.
+
+A major version change (eg: v1.0.0 to v2.0.0) requires a reconfiguration to the
+LDAP server, and may require existing records to be modified.
+
+## [v1.1.0](https://github.com/voperson/voperson/tree/1.1.0)
+
+* Added voPersonAffiliation, voPersonExternalAffiliation, and voPersonScopedAffiliation.
+* Added "Important Considerations When Using Attribute Options".
+* Errata.
+
+## [v1.0.0](https://github.com/voperson/voperson/tree/1.0.0)
+
+* Initial Release.

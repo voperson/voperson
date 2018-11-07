@@ -28,7 +28,17 @@ olcAttributeTypes: {7}( 1.3.6.1.4.1.34998.3.3.1.8 NAME 'voPersonSoRID' DESC 'v
 olcAttributeTypes: {8}( 1.3.6.1.4.1.34998.3.3.1.9 NAME 'voPersonStatus' DESC '
  voPerson Status' EQUALITY caseIgnoreMatch SYNTAX '1.3.6.1.4.1.1466.115.121.1.
  15' )
+olcAttributeTypes: {9}( 1.3.6.1.4.1.34998.3.3.1.10 NAME 'voPersonAffiliation' 
+ DESC 'voPerson Affiliation Within Local Scope' EQUALITY caseIgnoreMatch SYNT
+ AX '1.3.6.1.4.1.1466.115.121.1.15' )
+olcAttributeTypes: {10}( 1.3.6.1.4.1.34998.3.3.1.11 NAME 'voPersonExternalAffi
+ liation' DESC 'voPerson Scoped External Affiliation' EQUALITY caseIgnoreMatch
+  SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+olcAttributeTypes: {11}( 1.3.6.1.4.1.34998.3.3.1.12 NAME 'voPersonScopedAffili
+ ation' DESC 'voPerson Affiliation With Explicit Local Scope' EQUALITY caseIgn
+ oreMatch SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
 olcObjectClasses: {0}( 1.3.6.1.4.1.34998.3.3.1 NAME 'voPerson' AUXILIARY MAY (
-  voPersonApplicationUID $ voPersonAuthorName $ voPersonCertificateDN $ voPers
- onCertificateIssuerDN $ voPersonExternalID $ voPersonID $ voPersonPolicyAgree
- ment $ voPersonSoRID $ voPersonStatus ) )
+  voPersonAffiliation $ voPersonApplicationUID $ voPersonAuthorName $ voPerson
+ CertificateDN $ voPersonCertificateIssuerDN $ voPersonExternalAffiliation $ v
+ oPersonExternalID $ voPersonID $ voPersonPolicyAgreement $ voPersonScopedAffi
+ liation $ voPersonSoRID $ voPersonStatus ) )

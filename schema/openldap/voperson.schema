@@ -4,6 +4,12 @@ objectIdentifier voPersonRoot 1.3.6.1.4.1.34998.3.3
 # (in case we define other object classes later)
 objectIdentifier voPersonObjectClass voPersonRoot:1
 
+attributeType ( voPersonObjectClass:10
+        NAME 'voPersonAffiliation'
+        DESC 'voPerson Affiliation Within Local Scope'
+        EQUALITY caseIgnoreMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+
 attributeType ( voPersonObjectClass:1
         NAME 'voPersonApplicationUID'
         DESC 'voPerson Application-Specific User Identifier'
@@ -28,6 +34,12 @@ attributeType ( voPersonObjectClass:4
         EQUALITY distinguishedNameMatch
         SYNTAX '1.3.6.1.4.1.1466.115.121.1.12' )
 
+attributeType ( voPersonObjectClass:11
+        NAME 'voPersonExternalAffiliation'
+        DESC 'voPerson Scoped External Affiliation'
+        EQUALITY caseIgnoreMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+
 attributeType ( voPersonObjectClass:5
         NAME 'voPersonExternalID'
         DESC 'voPerson Scoped External Identifier'
@@ -46,6 +58,12 @@ attributeType ( voPersonObjectClass:7
         EQUALITY caseIgnoreMatch
         SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
 
+attributeType ( voPersonObjectClass:12
+        NAME 'voPersonScopedAffiliation'
+        DESC 'voPerson Affiliation With Explicit Local Scope'
+        EQUALITY caseIgnoreMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+
 attributeType ( voPersonObjectClass:8
         NAME 'voPersonSoRID'
         DESC 'voPerson External Identifier'
@@ -61,13 +79,16 @@ attributeType ( voPersonObjectClass:9
 objectClass ( voPersonObjectClass
 	NAME 'voPerson'
 	AUXILIARY
-	MAY ( voPersonApplicationUID $
+	MAY ( voPersonAffiliation $
+        voPersonApplicationUID $
         voPersonAuthorName $
         voPersonCertificateDN $
         voPersonCertificateIssuerDN $
+        voPersonExternalAffiliation $
         voPersonExternalID $
-        voPersonID $ 
-				voPersonPolicyAgreement $ 
+        voPersonID $
+				voPersonPolicyAgreement $
+        voPersonScopedAffiliation $
         voPersonSoRID $
         voPersonStatus )
 )
