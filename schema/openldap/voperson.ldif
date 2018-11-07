@@ -29,8 +29,8 @@ olcAttributeTypes: {8}( 1.3.6.1.4.1.34998.3.3.1.9 NAME 'voPersonStatus' DESC '
  voPerson Status' EQUALITY caseIgnoreMatch SYNTAX '1.3.6.1.4.1.1466.115.121.1.
  15' )
 olcAttributeTypes: {9}( 1.3.6.1.4.1.34998.3.3.1.10 NAME 'voPersonAffiliation' 
- DESC 'voPerson Affiliation Within Local Scope' EQUALITY caseIgnoreMatch SYNT
- AX '1.3.6.1.4.1.1466.115.121.1.15' )
+ DESC 'voPerson Affiliation Within Local Scope' EQUALITY caseIgnoreMatch SYNTA
+ X '1.3.6.1.4.1.1466.115.121.1.15' )
 olcAttributeTypes: {10}( 1.3.6.1.4.1.34998.3.3.1.11 NAME 'voPersonExternalAffi
  liation' DESC 'voPerson Scoped External Affiliation' EQUALITY caseIgnoreMatch
   SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
