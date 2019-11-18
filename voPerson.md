@@ -695,7 +695,7 @@ voPersonExternalAffiliation: protocol-rpg@university.edu
   <td>
 <pre>( 1.3.6.1.4.1.34998.3.3.1.5
         NAME 'voPersonExternalID'
-        DESC 'voPerson Scoped External Identifier'
+        DESC 'voPerson External Identifier'
         EQUALITY caseIgnoreMatch
         SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )</pre>
   </td>
@@ -718,7 +718,7 @@ voPersonExternalAffiliation: protocol-rpg@university.edu
 
 ### Definition
 
-An explicitly scoped identifier for a person, typically as issued by an external
+An identifier for a person, which may be explicitly scoped, typically as issued by an external
 authentication service such as a federated or social identity provider. This is
 a user-centric identifier, in the context of "bring your own identity". If the
 user doesn't know the identifier itself, they at least know the credentials
@@ -737,6 +737,7 @@ necessary to generate it.
 ```
 voPersonExternalID: plee@university.edu
 voPersonExternalID: 610400998542241058734@google.com
+voPersonExternalID: https://university.edu/idp/shibboleth!https://research.org/shibboleth!a6c2c4d4-08b9-4ca7-8ff9-43d83e6e1d35
 ```
 
 ## `voPersonID` Attribute Definition
