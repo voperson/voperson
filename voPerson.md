@@ -31,7 +31,9 @@
   * [`voPersonStatus` Attribute Definition](#vopersonstatus-attribute-definition)
 * [Recommended Attribute Usage](#recommended-attribute-usage)
 * [Sample LDIF](#sample-ldif)
+* [Related Documents](#related-documents)
 * [References](#references)
+* [Changelog](#changelog)
  
 ---
 
@@ -52,6 +54,8 @@ from these object classes.
 voPerson makes use of *attribute options*, a formal part of the LDAP specification ([RFC 4512](https://tools.ietf.org/html/rfc4512)
 §2.5) not widely used. Attribute options can provide metadata about values for the attribute.
 It may be necessary to configure the directory server to deliver attribute options.
+Attribute options are sometimes called _tagging options_ or _attribute
+description options_.
 
 <sup>1</sup>_A VO is an organization that includes members whose identity information is
 obtained from multiple sources, at least one of which is external to the organization.
@@ -439,7 +443,7 @@ voPersonAffiliation: researcher
  
  <tr>
   <th>Multiple Values?</th>
-  <td>Yes</td>
+  <td>Yes, when used with `app-` or `prior` attribute options</td>
  </tr>
  
  <tr>
@@ -1171,6 +1175,10 @@ voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-us
 voPersonSoRID;scope-hrms: E00747400
 voPersonStatus: active
 ```
+
+# Related Documents
+
+1. [voPerson SAML](aux/voPerson-SAML.md) Representation
 
 # References
 
