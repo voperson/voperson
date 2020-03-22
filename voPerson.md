@@ -18,6 +18,7 @@
 * [voPerson Object Class and Attributes](#voperson-object-class-and-attributes)
   * [voPerson Object Class Definition](#voperson-object-class-definition)
   * [`voPersonAffiliation` Attribute Definition](#vopersonaffiliation-attribute-definition)
+  * [`voPersonApplicationPassword` Attribute Definition](#vopersonapplicationpassword-attribute-definition)
   * [`voPersonApplicationUID` Attribute Definition](#vopersonapplicationuid-attribute-definition)
   * [`voPersonAuthorName` Attribute Definition](#vopersonauthorname-attribute-definition)
   * [`voPersonCertificateDN` Attribute Definition](#vopersoncertificatedn-attribute-definition)
@@ -353,6 +354,7 @@ Version 1
 	NAME 'voPerson'
 	AUXILIARY
 	MAY ( voPersonAffiliation $
+            voPersonApplicationPassword $
             voPersonApplicationUID $
             voPersonAuthorName $
             voPersonCertificateDN $
@@ -420,6 +422,68 @@ An organization-specific affiliation, intended to parallel but expand upon
 ```
 voPersonAffiliation: gradstudent
 voPersonAffiliation: researcher
+```
+
+## `voPersonApplicationPassword` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.34998.3.3.1.13</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.34998.3.3.1.13
+        NAME 'voPersonApplicationPassword'
+        DESC 'voPerson Application-Specific Password'
+        EQUALITY octetStringMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.40{128}' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes, when used with `app-` or `format-` attribute options</td>
+ </tr>
+ 
+ <tr>
+  <th>Attribute Options</th>
+  <td>
+   <ul>
+    <li><code>app-<i>applicationLabel</i></code>: Denotes application password is for</li>
+   </ul>
+  </td>
+ </tr>
+</table>
+
+### Definition
+
+An application specific password, corresponding roughly with the person object
+class *userPassword* attribute, but constrained to one application or one cluster
+of applications. The use of the `app-` attribute option is required to denote the
+target application. Multiple values for the same `app` are permitted when encoded
+in different formats. Formatting is described in [[Stroeder](https://tools.ietf.org/id/draft-stroeder-hashed-userpassword-values-01.html)], ie using `{scheme}` notation.
+
+### Additional Considerations
+
+The LDAP server should be configured appropriately to avoid unauthorized access
+to this attribute (for both read and write purposes, in accordance with local
+requirements). See, for example, the [OpenLDAP Access Control Examples](https://www.openldap.org/doc/admin24/access-control.html#Access%20Control%20Common%20Examples).
+
+### Alternate Approaches
+
+* A similar approach is possible leveraging the already existing *userPassword* attribute,
+  but requiring the use of the `app-` attribute option. However, it is unlikely that
+  existing applications will understand multiple values in the *userPassword* attribute
+  and how to distinguish them using attribute options. This, in turn, could create
+  a security risk.
+
+### Example
+
+```
+voPersonApplicationPassword;app-wiki: {bcrypt}$2y$10$NCAEogo6Q1boibEUAshANeR.Xy5ruAuEgF9us5pDvC.Ujo9kaiwY.
 ```
 
 ## `voPersonApplicationUID` Attribute Definition
@@ -1193,6 +1257,7 @@ voPersonStatus: active
 1. [RFC 4524](https://tools.ietf.org/html/rfc4524) COSINE LDAP/X.500 Schema
 1. [RFC 6648](https://tools.ietf.org/html/rfc6648) Deprecating the "X-" Prefix and Similar Constructs in Application Protocols
 1. [SAML V2.0 Subject Identifier Attributes Profile Version 1.0](https://wiki.oasis-open.org/security/SAMLSubjectIDAttr)
+1. [Stroeder](https://tools.ietf.org/id/draft-stroeder-hashed-userpassword-values-01.html) Lightweight Directory Access Protocol (LDAP): Hashed Attribute values for 'userPassword'
 
 # Changelog
 
