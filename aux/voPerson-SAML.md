@@ -63,7 +63,7 @@ _Pending further discussion_
 # Sample SAML
 
 ```
-<saml:Attribute FriendlyName="voPersonApplicationUID" Name="urn:oid:1.3.6.1.4.1.34998.3.3.1.1"
+<saml:Attribute FriendlyName="voPersonApplicationUID" Name="urn:oid:1.3.6.1.4.1.25178.4.1.1"
     NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
     <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

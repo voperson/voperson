@@ -350,7 +350,7 @@ Version 1
 ## voPerson Object Class Definition
 
 ```
-( 1.3.6.1.4.1.34998.3.3.1
+( 1.3.6.1.4.1.25178.4.1
 	NAME 'voPerson'
 	AUXILIARY
 	MAY ( voPersonAffiliation $
@@ -374,13 +374,13 @@ Version 1
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.10</td>
+  <td>1.3.6.1.4.1.25178.4.1.10</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.10
+<pre>( 1.3.6.1.4.1.25178.4.1.10
         NAME 'voPersonAffiliation'
         DESC 'voPerson Affiliation Within Local Scope'
         EQUALITY caseIgnoreMatch
@@ -429,13 +429,13 @@ voPersonAffiliation: researcher
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.13</td>
+  <td>1.3.6.1.4.1.25178.4.1.13</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.13
+<pre>( 1.3.6.1.4.1.25178.4.1.13
         NAME 'voPersonApplicationPassword'
         DESC 'voPerson Application-Specific Password'
         EQUALITY octetStringMatch
@@ -445,7 +445,7 @@ voPersonAffiliation: researcher
  
  <tr>
   <th>Multiple Values?</th>
-  <td>Yes, when used with `app-` or `format-` attribute options</td>
+  <td>Yes, when used with `app-` attribute option</td>
  </tr>
  
  <tr>
@@ -491,13 +491,13 @@ voPersonApplicationPassword;app-wiki: {bcrypt}$2y$10$NCAEogo6Q1boibEUAshANeR.Xy5
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.1</td>
+  <td>1.3.6.1.4.1.25178.4.1.1</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.1
+<pre>( 1.3.6.1.4.1.25178.4.1.1
         NAME 'voPersonApplicationUID'
         DESC 'voPerson Application-Specific User Identifier'
         EQUALITY caseIgnoreMatch
@@ -551,13 +551,13 @@ voPersonApplicationUID;app-wiki;prior: patlee@myvo.org
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.2</td>
+  <td>1.3.6.1.4.1.25178.4.1.2</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.2
+<pre>( 1.3.6.1.4.1.25178.4.1.2
         NAME 'voPersonAuthorName'
         DESC 'voPerson Author Name'
         EQUALITY caseIgnoreMatch
@@ -601,13 +601,13 @@ voPersonAuthorName;prior: P Q Smith
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.3</td>
+  <td>1.3.6.1.4.1.25178.4.1.3</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.3
+<pre>( 1.3.6.1.4.1.25178.4.1.3
         NAME 'voPersonCertificateDN'
         DESC 'voPerson Certificate Distinguished Name'
         EQUALITY distinguishedNameMatch
@@ -654,13 +654,13 @@ voPersonCertificateDN;scope-cert1: CN=Pat Lee A251,O=Example,C=US,DC=cilogon,DC=
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.4</td>
+  <td>1.3.6.1.4.1.25178.4.1.4</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.4
+<pre>( 1.3.6.1.4.1.25178.4.1.4
         NAME 'voPersonCertificateIssuerDN'
         DESC 'voPerson Certificate Issuer DN'
         EQUALITY distinguishedNameMatch
@@ -704,13 +704,13 @@ voPersonCertificateDN;scope-cert1: CN=CILogon Basic CA 1, O=CILogon, C=US, DC=ci
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.11</td>
+  <td>1.3.6.1.4.1.25178.4.1.11</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.11
+<pre>( 1.3.6.1.4.1.25178.4.1.11
         NAME 'voPersonExternalAffiliation'
         DESC 'voPerson Scoped External Affiliation'
         EQUALITY caseIgnoreMatch
@@ -755,13 +755,13 @@ voPersonExternalAffiliation: protocol-rpg@university.edu
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.5</td>
+  <td>1.3.6.1.4.1.25178.4.1.5</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.5
+<pre>( 1.3.6.1.4.1.25178.4.1.5
         NAME 'voPersonExternalID'
         DESC 'voPerson Scoped External Identifier'
         EQUALITY caseIgnoreMatch
@@ -812,13 +812,13 @@ voPersonExternalID: 610400998542241058734@google.com
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.6</td>
+  <td>1.3.6.1.4.1.25178.4.1.6</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.6
+<pre>( 1.3.6.1.4.1.25178.4.1.6
         NAME 'voPersonID'
         DESC 'voPerson Unique Identifier'
         EQUALITY caseIgnoreMatch
@@ -868,13 +868,13 @@ voPersonID: V097531
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.7</td>
+  <td>1.3.6.1.4.1.25178.4.1.7</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.7
+<pre>( 1.3.6.1.4.1.25178.4.1.7
         NAME 'voPersonPolicyAgreement'
         DESC 'voPerson Policy Agreement Indicator'
         EQUALITY caseIgnoreMatch
@@ -920,13 +920,13 @@ voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-us
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.12</td>
+  <td>1.3.6.1.4.1.25178.4.1.12</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.12
+<pre>( 1.3.6.1.4.1.25178.4.1.12
         NAME 'voPersonScopedAffiliation'
         DESC 'voPerson Affiliation With Explicit Local Scope'
         EQUALITY caseIgnoreMatch
@@ -965,13 +965,13 @@ Will vary by protocol.
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.8</td>
+  <td>1.3.6.1.4.1.25178.4.1.8</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.8
+<pre>( 1.3.6.1.4.1.25178.4.1.8
         NAME 'voPersonSoRID'
         DESC 'voPerson External Identifier'
         EQUALITY caseIgnoreMatch
@@ -1018,13 +1018,13 @@ voPersonSoRID;scope-hrms: E00747400
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.9</td>
+  <td>1.3.6.1.4.1.25178.4.1.9</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.9
+<pre>( 1.3.6.1.4.1.25178.4.1.9
         NAME 'voPersonStatus'
         DESC 'voPerson Status'
         EQUALITY caseIgnoreMatch

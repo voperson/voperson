@@ -1,8 +1,8 @@
-# CILogon assigned 1.3.6.1.4.1.34998.3.3 to voPerson
-objectIdentifier voPersonRoot 1.3.6.1.4.1.34998.3.3
-# voPosixAccount object class is 1.3.6.1.4.1.34998.3.3.2
+# GÉANT/REFEDS assigned 1.3.6.1.4.1.25178.4 to voPerson
+objectIdentifier voPersonRoot 1.3.6.1.4.1.25178.4
+# voPosixAccount object class is 1.3.6.1.4.1.25178.4.2
 objectIdentifier voPosixAccountObjectClass voPersonRoot:2
-# voPosixGroup object class is 1.3.6.1.4.1.34998.3.3.3
+# voPosixGroup object class is 1.3.6.1.4.1.25178.4.3
 objectIdentifier voPosixGroupObjectClass voPersonRoot:3
 
 attributeType ( voPosixAccountObjectClass:1
