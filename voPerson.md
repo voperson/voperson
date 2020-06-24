@@ -11,6 +11,7 @@
 * [voPerson Attribute Options](#voperson-attribute-options)
   * [`app-*` Attribute Description Option](#app--attribute-description-option)
   * [`internal` Attribute Description Option](#internal-attribute-description-option)
+  * [`preferred` Attribute Description Option](#preferred-attribute-description-option)
   * [`prior` Attribute Description Option](#prior-attribute-description-option)
   * [`role-*` Attribute Description Option](#role--attribute-description-option)
   * [`scope-*` Attribute Description Option](#scope--attribute-description-option)
@@ -30,6 +31,7 @@
   * [`voPersonScopedAffiliation` Attribute Definition](#vopersonscopedaffiliation-attribute-definition)
   * [`voPersonSoRID` Attribute Definition](#vopersonsorid-attribute-definition)
   * [`voPersonStatus` Attribute Definition](#vopersonstatus-attribute-definition)
+  * [`voPersonVerifiedEmail` Attribute Definition](#vopersonverifiedemail-attribute-definition)
 * [Recommended Attribute Usage](#recommended-attribute-usage)
 * [Sample LDIF](#sample-ldif)
 * [Related Documents](#related-documents)
@@ -286,6 +288,20 @@ released by the client.
 mobile;internal: +1 646 555 1212
 ```
 
+## `preferred` Attribute Description Option
+
+Where an attribute may have multiple values, the value considered preferred in
+its context. For example, if a record indicates multiple email addresses, this
+flag indicates which one the subject prefers. Only one value for a particular
+attribute may be labeled preferred.
+
+### Example
+
+```
+voPersonVerifiedEmail: user@university.edu
+voPersonVerifiedEmail;preferred: user@company.com
+```
+
 ## `prior` Attribute Description Option
 
 Used to identify a previous (deprecated) value for an attribute. That is, any value
@@ -365,7 +381,8 @@ Version 1
             voPersonPolicyAgreement $ 
             voPersonScopedAffiliation $
             voPersonSoRID $
-            voPersonStatus )
+            voPersonStatus $
+            voPersonVerifiedEmail )
 )
 ```
 
@@ -1074,6 +1091,65 @@ though the values of this attribute are not constrained to them:
 voPersonStatus: active
 ```
 
+## `voPersonVerifiedEmail` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.25178.4.1.14</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.25178.4.1.14
+        NAME 'voPersonVerifiedEmail'
+        DESC 'voPerson Verified Email Address'
+        EQUALITY caseIgnoreMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes</td>
+ </tr>
+ 
+ <tr>
+  <th>Attribute Options</th>
+  <td>
+   <ul>
+    <li><code>preferred</code>: Denotes the preferred verified email address for the record</li>
+   </ul>
+  </td>
+ </tr>
+</table>
+
+### Definition
+
+An email address of the same definition as the inetOrgPerson `mail` attribute
+([RFC 4524](https://tools.ietf.org/html/rfc4524)), with the additional characteristic
+that the address has been verified as being controlled by the subject of the
+record. The specific verification mechanism is not defined here, but is expected
+to meet industry best practices in the context in which the email address is
+asserted.
+
+This attribute can be used to supplement or replace `mail`.
+
+### Alternate Approaches
+
+* A `verified` attribute description option could be attached to `mail`, which
+  would be clearer and less redundant. However, `mail` is not a voPerson
+  attribute, and so recommending the use of an attribute description option
+  could cause confusion for existing clients.
+
+### Example
+
+```
+voPersonVerifiedEmail: user@university.edu
+voPersonVerifiedEmail;preferred: user@company.com
+```
+
 # Recommended Attribute Usage
 
 <table>
@@ -1238,6 +1314,7 @@ voPersonID;prior: V097522
 voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-use
 voPersonSoRID;scope-hrms: E00747400
 voPersonStatus: active
+voPersonVerifiedEmail: plee@university.edu
 ```
 
 # Related Documents

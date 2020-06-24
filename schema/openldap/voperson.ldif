@@ -40,8 +40,12 @@ olcAttributeTypes: {11}( 1.3.6.1.4.1.25178.4.1.12 NAME 'voPersonScopedAffiliat
 olcAttributeTypes: {12}( 1.3.6.1.4.1.25178.4.1.13 NAME 'voPersonApplicationPas
  sword' DESC 'voPerson Application-Specific Password' EQUALITY octetStringMatc
  h SYNTAX '1.3.6.1.4.1.1466.115.121.1.40{128}' )
+olcAttributeTypes: {13}( 1.3.6.1.4.1.25178.4.1.14 NAME 'voPersonVerifiedEmail'
+  DESC 'voPerson Verified Email Address' EQUALITY caseIgnoreMatch SYNTAX '1.3.
+ 6.1.4.1.1466.115.121.1.15' )
 olcObjectClasses: {0}( 1.3.6.1.4.1.25178.4.1 NAME 'voPerson' AUXILIARY MAY ( v
  oPersonAffiliation $ voPersonApplicationPassword $ voPersonApplicationUID $ v
  oPersonAuthorName $ voPersonCertificateDN $ voPersonCertificateIssuerDN $ voP
  ersonExternalAffiliation $ voPersonExternalID $ voPersonID $ voPersonPolicyAg
- reement $ voPersonScopedAffiliation $ voPersonSoRID $ voPersonStatus ) )
+ reement $ voPersonScopedAffiliation $ voPersonSoRID $ voPersonStatus $ voPers
+ onVerifiedEmail ) )
