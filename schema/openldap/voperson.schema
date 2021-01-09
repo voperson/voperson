@@ -103,5 +103,4 @@ objectClass ( voPersonObjectClass
         voPersonScopedAffiliation $
         voPersonSoRID $
         voPersonStatus $
-        voPersonVerifiedEmail )
-)
+        voPersonVerifiedEmail ) )
