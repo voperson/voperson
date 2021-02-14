@@ -81,6 +81,12 @@ attributeType ( voPersonObjectClass:9
         EQUALITY caseIgnoreMatch
         SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
 
+attributeType ( voPersonObjectClass:15
+        NAME 'voPersonToken'
+        DESC 'voPerson Token'
+        EQUALITY caseExactMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+
 attributeType ( voPersonObjectClass:14
         NAME 'voPersonVerifiedEmail'
         DESC 'voPerson Verified Email Address'
@@ -103,4 +109,5 @@ objectClass ( voPersonObjectClass
         voPersonScopedAffiliation $
         voPersonSoRID $
         voPersonStatus $
+        voPersonToken $
         voPersonVerifiedEmail ) )

@@ -16,6 +16,7 @@
   * [`role-*` Attribute Description Option](#role--attribute-description-option)
   * [`scope-*` Attribute Description Option](#scope--attribute-description-option)
   * [`time-#` Attribute Description Option](#time--attribute-description-option)
+  * [`type-#` Attribute Description Option](#type--attribute-description-option)
 * [voPerson Object Class and Attributes](#voperson-object-class-and-attributes)
   * [voPerson Object Class Definition](#voperson-object-class-definition)
   * [`voPersonAffiliation` Attribute Definition](#vopersonaffiliation-attribute-definition)
@@ -31,6 +32,7 @@
   * [`voPersonScopedAffiliation` Attribute Definition](#vopersonscopedaffiliation-attribute-definition)
   * [`voPersonSoRID` Attribute Definition](#vopersonsorid-attribute-definition)
   * [`voPersonStatus` Attribute Definition](#vopersonstatus-attribute-definition)
+  * [`voPersonToken` Attribute Definition](#vopersontoken-attribute-definition)
   * [`voPersonVerifiedEmail` Attribute Definition](#vopersonverifiedemail-attribute-definition)
 * [Recommended Attribute Usage](#recommended-attribute-usage)
 * [Sample LDIF](#sample-ldif)
@@ -359,9 +361,20 @@ the definition of that schema.
 voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-use
 ```
 
-# voPerson Object Class and Attributes
+## `type-*` Attribute Description Option
 
-Version 1
+A label indicating the type of a value, where an attribute can have multiple
+types. In general, this option should not be used when a formally defined
+attribute is available. For example, the attribute `mobile` should be used
+rather than `telephoneNumber;type-mobile`.
+
+### Example
+
+```
+cn;type-author: P Q Lee
+```
+
+# voPerson Object Class and Attributes
 
 ## voPerson Object Class Definition
 
@@ -382,6 +395,7 @@ Version 1
             voPersonScopedAffiliation $
             voPersonSoRID $
             voPersonStatus $
+            voPersonToken $
             voPersonVerifiedEmail )
 )
 ```
@@ -1089,6 +1103,52 @@ though the values of this attribute are not constrained to them:
 
 ```
 voPersonStatus: active
+```
+
+## `voPersonToken` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.25178.4.1.15</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.25178.4.1.15
+        NAME 'voPersonToken'
+        DESC 'voPerson Token'
+        EQUALITY caseExactMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes</td>
+ </tr>
+
+ <tr>
+  <th>Attribute Options</th>
+  <td>
+   <ul>
+    <li><code>type-</code>: Denotes the type of the token</li>
+   </ul>
+  </td>
+ </tr>
+</table>
+
+### Definition
+
+An identifier for an authentication token associated with the person, typically
+a token serial number.
+
+### Example
+
+```
+voPersonToken: SERIAL12345
+voPresonToken;type-totp: T0067890
 ```
 
 ## `voPersonVerifiedEmail` Attribute Definition
