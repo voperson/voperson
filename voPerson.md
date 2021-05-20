@@ -1356,7 +1356,7 @@ displayName: Pat Lee
 eduPersonAffiliation: staff
 eduPersonAffiliation: member
 eduPersonNickName: Pat
-eduPersonOrcid: http://orcid.org/0000-0002-1825-0097
+eduPersonOrcid: https://orcid.org/0000-0002-1825-0097
 givenName: Patricia
 sn: Lee
 sn;prior: Smith
