@@ -836,6 +836,7 @@ necessary to generate it.
 ```
 voPersonExternalID: plee@university.edu
 voPersonExternalID: 610400998542241058734@google.com
+voPersonExternalID: https://university.edu/idp/shibboleth!https://research.org/shibboleth!a6c2c4d4-08b9-4ca7-8ff9-43d83e6e1d35
 ```
 
 ## `voPersonID` Attribute Definition
