@@ -19,7 +19,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": true,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -30,17 +30,17 @@
                     "type": "boolean",
                     "multiValued": false,
                     "required": false,
-                    "caseExact": true,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
-                },{
+                },
+                {
                     "name": "role",
                     "description": "Denotes a role specific affiliation if present (otherwise overall person affiliation)",
                     "type": "string",
                     "multiValued": false,
                     "required": false,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -51,7 +51,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": false,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -108,7 +108,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": true,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -130,7 +130,6 @@
                     "type": "boolean",
                     "multiValued": false,
                     "required": false,
-                    "caseExact": true,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -152,7 +151,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": true,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -170,7 +169,7 @@
             ]
         },
         {
-            "name": "voPersonCertificateDN", 
+            "name": "voPersonCertificateDN",
             "description": "The Subject Distinguished Name of an X.509 certificate held by the person.",
             "type": "complex",
             "multiValued": true,
@@ -206,7 +205,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": false,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -263,7 +262,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": true,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -296,7 +295,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": true,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -329,7 +328,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": true,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -396,7 +395,7 @@
             "type": "string",
             "multiValued": true,
             "required": false,
-            "caseExact": true,
+            "caseExact": false,
             "mutability": "readWrite",
             "returned": "default",
             "uniqueness": "none"
@@ -417,7 +416,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": true,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -437,8 +436,8 @@
                     "description": "Denotes source system. Example: hrml",
                     "type": "string",
                     "multiValued": false,
-                    "required": true,
-                    "caseExact": true,
+                    "required": false,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -461,11 +460,26 @@
                     "type": "string",
                     "multiValued": false,
                     "required": true,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none",
-                    "canonicalValues": ["active", "approved", "confirmed", "declined", "deleted", "denied", "duplicate", "expired", "gracePeriod", "invited", "pending", "pendingApproval", "pendingConfirmation", "suspended"]
+                    "canonicalValues": [
+                        "active",
+                        "approved",
+                        "confirmed",
+                        "declined",
+                        "deleted",
+                        "denied",
+                        "duplicate",
+                        "expired",
+                        "gracePeriod",
+                        "invited",
+                        "pending",
+                        "pendingApproval",
+                        "pendingConfirmation",
+                        "suspended"
+                    ]
                 },
                 {
                     "name": "role",
@@ -473,7 +487,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": false,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -515,7 +529,7 @@
             ]
         },
         {
-            "name": "voPersonVerifiedEmail", 
+            "name": "voPersonVerifiedEmail",
             "description": "An email address of the same definition as the inetOrgPerson mail attribute (RFC 4524), with the additional characteristic that the address has been verified as being controlled by the subject of the record.",
             "type": "complex",
             "multiValued": true,
@@ -530,7 +544,7 @@
                     "type": "string",
                     "multiValued": false,
                     "required": true,
-                    "caseExact": true,
+                    "caseExact": false,
                     "mutability": "readWrite",
                     "returned": "default",
                     "uniqueness": "none"
@@ -560,4 +574,3 @@
         }
     ]
 }
-
