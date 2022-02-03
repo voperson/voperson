@@ -1,0 +1,129 @@
+{
+    "schemas": [
+        "urn:ietf:params:scim:schemas:core:2.0:User",
+        "urn:temporaryNamespace:scim:schemas:voPerson:User"
+    ],
+    "id": "d7a53cb23423420398409de7355956560282158ecac8f3d2c770b474862f4756",
+    "meta": {
+        "resourceType": "User",
+        "created": "2011-08-01T18:29:49.793Z",
+        "lastModified": "Invalid date",
+        "location": "https://example.com/v2/Users/2819c223...",
+        "version": "W/\"f250dd84f0671c3\""
+    },
+    "userName": "Elizabeth Alexandra Mary Mountbatten Windsor",
+    "urn:temporaryNamespace:scim:schemas:voPerson:User": {
+        "voPersonAffiliation": [
+            {
+                "value": "gradstudent",
+                "prior": false,
+                "role": "none",
+                "scope": "none"
+            }
+        ],
+        "voPersonApplicationPassword": [
+            {
+                "value": "{bcrypt}$2y$10$NCAEogo6Q1boibEUAshANeR.Xy5ruAuEgF9us5pDvC.Ujo9kaiwY.",
+                "app": "wiki"
+            }
+        ],
+        "voPersonApplicationUID": [
+            {
+                "value": "plee@myvo.org",
+                "app": "wiki",
+                "prior": false
+            }
+        ],
+        "voPersonAuthorName": [
+            {
+                "value": "P Q Lee",
+                "prior": false
+            }
+        ],
+        "voPersonCertificateDN": [
+            {
+                "value": "C = DE, O = GermanGrid, OU = KIT, CN = Queen Elizabeth",
+                "prior": false,
+                "scope": "cert1"
+            }
+        ],
+        "voPersonCertificateIssuerDN": [
+            {
+                "value": "CN=CILogon Basic CA 1, O=CILogon, C=US, DC=cilogon, DC=org",
+                "scope": "cert1"
+            }
+        ],
+        "voPersonExternalAffiliation": [
+            {
+                "value": "gradstudent@yourvo.org",
+                "prior": false
+            }
+        ],
+        "voPersonExternalID": [
+            {
+                "value": "610400998542241058734@google.com",
+                "prior": false
+            }
+        ],
+        "voPersonID": [
+            {
+                "value": "V097531",
+                "prior": false
+            }
+        ],
+        "voPersonPolicyAgreement": [
+            {
+                "value": "https://myvo.org/policies/acceptable-use",
+                "time": 1516593822,
+                "version": [
+                    "v1.0",
+                    "v1.1",
+                    "v2.0"
+                ]
+            }
+        ],
+        "voPersonScopedAffiliation": [
+            "member@community.of.royals.uk"
+        ],
+        "voPersonSoRID": [
+            {
+                "value": "E00747400",
+                "prior": false,
+                "scope": "hrms"
+            }
+        ],
+        "voPersonStatus": [
+            {
+                "value": "active",
+                "role": "none"
+            },
+            {
+                "value": "pending",
+                "role": "admin"
+            }
+        ],
+        "voPersonToken": [
+            {
+                "value": "SERIAL12345"
+            },
+            {
+                "value": "T0067890",
+                "type": "totp"
+            }
+        ],
+        "voPersonVerifiedEmail": [
+            {
+                "value": "elizabeth@royal.uk",
+                "preferred": true
+            },
+            {
+                "value": "liz@gmail.com",
+                "preferred": false
+            }
+        ],
+        "voPersonSshPublicKey": [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqA5FW6m3FbFhCOsRQBxKMRki5qJxoNhZdaeLXg6ym/",
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK4/7MGLu0yTQP8mtDNlLtXjvG5WqnXDMoE92bV0whlt"
+        ]
+    }
+}
