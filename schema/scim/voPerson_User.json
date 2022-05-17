@@ -1,0 +1,576 @@
+{
+    "id": "urn:temporaryNamespace:scim:schemas:voPerson:User",
+    "name": "VO Person Provile",
+    "description": "voPerson is both a set of recommendations and an ldap attribute schema (object class), intended to provide a common reference point for attribute management within a Virtual Organization (VO)",
+    "attributes": [
+        {
+            "name": "voPersonAffiliation",
+            "description": "An organization-specific affiliation, intended to parallel but expand upon eduPersonAffiliation, allowing for finer grained descriptions of affiliations (such as graduate student, undergraduate, research, PI, administrator, etc).",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonAffiliation. Example: gradstudent",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "prior",
+                    "description": "Denotes prior user affiliation, no longer current",
+                    "type": "boolean",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "role",
+                    "description": "Denotes a role specific affiliation if present (otherwise overall person affiliation)",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": false,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "scope",
+                    "description": "Denotes affiliation as asserted by source system",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": false,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonApplicationPassword",
+            "description": "An application specific password, corresponding roughly with the person object class userPassword attribute, but constrained to one application or one cluster of applications. The use of the app- attribute option is required to denote the target application. Multiple values for the same app are permitted when encoded in different formats.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the password. Example: {bcrypt}$2y$10$NCAEogo6Q1boibEUAshANeR.Xy5ruAuEgF9us5pDvC.Ujo9kaiwY.",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "app",
+                    "description": "Name of the app to denote the target application. Example: wiki",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": false,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonApplicationUID",
+            "description": "An application specific identifier, corresponding roughly with the inetOrgPerson uid, but constrained to one application or one cluster of applications.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonApplicationUID. Example: plee@myvo.org",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "app",
+                    "description": "Name of the app to denote the target application. Example: wiki",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": false,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "prior",
+                    "description": "Denotes prior user identifier, no longer current",
+                    "type": "boolean",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonAuthorName",
+            "description": "The formal author name of the subject, suitable for publication purposes.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonAuthorName. Example: P Q Lee",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "prior",
+                    "description": "Denotes prior author name, no longer current",
+                    "type": "boolean",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonCertificateDN",
+            "description": "The Subject Distinguished Name of an X.509 certificate held by the person.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonCertificateDN. Example: P Q Lee",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "prior",
+                    "description": "Denotes a prior Author",
+                    "type": "boolean",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "scope",
+                    "description": "Identifies source to correlate with voPersonCertificateIssuerDN. Example: cert1",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": false,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonCertificateIssuerDN",
+            "description": "The Subject Distinguished Name of the X.509 certificate issuer. The use of the scope attribute option is required to denote the correlating certificate.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonCertificateIssuerDN. Example: CN=CILogon Basic CA 1, O=CILogon, C=US, DC=cilogon, DC=org",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "scope",
+                    "description": "Identifies source to correlate with voPersonCertificateDN. Example: cert1",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": false,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonExternalAffiliation",
+            "description": "An organization-specific affiliation as per voPersonAffiliation, but obtained from an external organization, and therefore scoped.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonExternalAffiliation. Example: gradstudent@yourvo.org",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "prior",
+                    "description": "Denotes prior user affiliation, no longer current",
+                    "type": "boolean",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonExternalID",
+            "description": "An explicitly scoped identifier for a person, typically as issued by an external authentication service such as a federated or social identity provider.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "global",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonExternalID. Example: plee@university.edu",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "prior",
+                    "description": "Denotes prior external identifier, no longer current",
+                    "type": "boolean",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonID",
+            "description": "The platform or enterprise identifier.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "immutable",
+            "returned": "request",
+            "uniqueness": "global",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonExternalID. Example: plee@university.edu",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "prior",
+                    "description": "Denotes prior unique identifier (perhaps deprecated as a result of a record merge), no longer current.",
+                    "type": "boolean",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonPolicyAgreement",
+            "description": "The URL describing a policy that has been agreed to by the person identified by this record.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "The URL to to policy. Example: https://myvo.org/policies/acceptable-use",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "time",
+                    "description": "Denotes time the policy was agreed to",
+                    "type": "integer",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "version",
+                    "description": "Denotes versions of the policy that were agreed to",
+                    "type": "string",
+                    "multiValued": true,
+                    "required": false,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonScopedAffiliation",
+            "description": "Used for transport only, this attribute maps voPersonAffiliation when used across the wire. The resulting value should be stored in voPersonExternalAffiliation by the receiving entity.",
+            "type": "string",
+            "multiValued": true,
+            "required": false,
+            "caseExact": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none"
+        },
+        {
+            "name": "voPersonSoRID",
+            "description": "An implicitly scoped identifier for a person, typically as issued by a system of record. This is a 'behind the scenes' or system-centric identifier, and generally cannot be used for authentication.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonSoRID. Example: E0074700",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "prior",
+                    "description": "Denotes prior external identifier, no longer current",
+                    "type": "boolean",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "scope",
+                    "description": "Denotes source system. Example: hrml",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": false,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonStatus",
+            "description": "The person's status within the organization. A set of standard values are defined, though the values of this attribute are not constrained to them",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonStatus",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none",
+                    "canonicalValues": [
+                        "active",
+                        "approved",
+                        "confirmed",
+                        "declined",
+                        "deleted",
+                        "denied",
+                        "duplicate",
+                        "expired",
+                        "gracePeriod",
+                        "invited",
+                        "pending",
+                        "pendingApproval",
+                        "pendingConfirmation",
+                        "suspended"
+                    ]
+                },
+                {
+                    "name": "role",
+                    "description": "Denotes a role specific status if present (otherwise overall person status)",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": false,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonToken",
+            "description": "An identifier for an authentication token associated with the person, typically a token serial number.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "server",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonToken. Example SERIAL12345",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "Server"
+                },
+                {
+                    "name": "type",
+                    "description": "Type of the voPersonToken. Example: totp",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": false,
+                    "caseExact": true,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonVerifiedEmail",
+            "description": "An email address of the same definition as the inetOrgPerson mail attribute (RFC 4524), with the additional characteristic that the address has been verified as being controlled by the subject of the record.",
+            "type": "complex",
+            "multiValued": true,
+            "required": false,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "global",
+            "subAttributes": [
+                {
+                    "name": "value",
+                    "description": "Value of the voPersonVerifiedEmail. Example: user@university.edu",
+                    "type": "string",
+                    "multiValued": false,
+                    "required": true,
+                    "caseExact": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                },
+                {
+                    "name": "preferred",
+                    "description": "Denotes the preferred verified email address for the record",
+                    "type": "boolean",
+                    "multiValued": false,
+                    "required": false,
+                    "mutability": "readWrite",
+                    "returned": "default",
+                    "uniqueness": "none"
+                }
+            ]
+        },
+        {
+            "name": "voPersonSshPublicKey",
+            "description": "SSH public key(s) of the user",
+            "type": "string",
+            "multiValued": true,
+            "required": false,
+            "caseExact": true,
+            "mutability": "readWrite",
+            "returned": "default",
+            "uniqueness": "none"
+        }
+    ]
+}
