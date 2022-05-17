@@ -1,4 +1,4 @@
-# voPerson v1.1.0
+# voPerson v2.0.0
 
 * [Introduction](#introduction)
 * [Discussion on Identifiers](#discussion-on-identifiers)
@@ -41,7 +41,13 @@
 * [Changelog](#changelog)
  
 ---
+![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) 
 
+This work is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+
+Copyright © 2018-2022 by the respective authors.
+
+---
 # Introduction
 
 *voPerson* is both a set of recommendations and an ldap attribute schema (object class),
@@ -1410,6 +1416,15 @@ version change will not break existing LDAP entries.
 
 A major version change (eg: v1.0.0 to v2.0.0) requires a reconfiguration to the
 LDAP server, and may require existing records to be modified.
+
+## [v2.0.0](https://github.com/voperson/voperson/tree/2.0.0)
+
+* Management of voPerson transitioned to [REFEDS Schema Editorial Board](https://wiki.refeds.org/display/STAN/).
+* Added voPerson SAML Representation.
+* Added voposixaccount schema and associated attributes.
+* Added voPersonApplicationPassword, voPersonVerifiedEmail, and voPersonToken.
+* Migrated OIDs to REFEDS/GÉANT OID space.
+* Errata.
 
 ## [v1.1.0](https://github.com/voperson/voperson/tree/1.1.0)
 
