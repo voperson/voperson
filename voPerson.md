@@ -1,4 +1,4 @@
-# voPerson v1.1.0
+# voPerson v2.0.0
 
 * [Introduction](#introduction)
 * [Discussion on Identifiers](#discussion-on-identifiers)
@@ -11,13 +11,16 @@
 * [voPerson Attribute Options](#voperson-attribute-options)
   * [`app-*` Attribute Description Option](#app--attribute-description-option)
   * [`internal` Attribute Description Option](#internal-attribute-description-option)
+  * [`preferred` Attribute Description Option](#preferred-attribute-description-option)
   * [`prior` Attribute Description Option](#prior-attribute-description-option)
   * [`role-*` Attribute Description Option](#role--attribute-description-option)
   * [`scope-*` Attribute Description Option](#scope--attribute-description-option)
   * [`time-#` Attribute Description Option](#time--attribute-description-option)
+  * [`type-#` Attribute Description Option](#type--attribute-description-option)
 * [voPerson Object Class and Attributes](#voperson-object-class-and-attributes)
   * [voPerson Object Class Definition](#voperson-object-class-definition)
   * [`voPersonAffiliation` Attribute Definition](#vopersonaffiliation-attribute-definition)
+  * [`voPersonApplicationPassword` Attribute Definition](#vopersonapplicationpassword-attribute-definition)
   * [`voPersonApplicationUID` Attribute Definition](#vopersonapplicationuid-attribute-definition)
   * [`voPersonAuthorName` Attribute Definition](#vopersonauthorname-attribute-definition)
   * [`voPersonCertificateDN` Attribute Definition](#vopersoncertificatedn-attribute-definition)
@@ -29,12 +32,22 @@
   * [`voPersonScopedAffiliation` Attribute Definition](#vopersonscopedaffiliation-attribute-definition)
   * [`voPersonSoRID` Attribute Definition](#vopersonsorid-attribute-definition)
   * [`voPersonStatus` Attribute Definition](#vopersonstatus-attribute-definition)
+  * [`voPersonToken` Attribute Definition](#vopersontoken-attribute-definition)
+  * [`voPersonVerifiedEmail` Attribute Definition](#vopersonverifiedemail-attribute-definition)
 * [Recommended Attribute Usage](#recommended-attribute-usage)
 * [Sample LDIF](#sample-ldif)
+* [Related Documents](#related-documents)
 * [References](#references)
+* [Changelog](#changelog)
  
 ---
+![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) 
 
+This work is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+
+Copyright © 2018-2022 by the respective authors.
+
+---
 # Introduction
 
 *voPerson* is both a set of recommendations and an ldap attribute schema (object class),
@@ -52,6 +65,8 @@ from these object classes.
 voPerson makes use of *attribute options*, a formal part of the LDAP specification ([RFC 4512](https://tools.ietf.org/html/rfc4512)
 §2.5) not widely used. Attribute options can provide metadata about values for the attribute.
 It may be necessary to configure the directory server to deliver attribute options.
+Attribute options are sometimes called _tagging options_ or _attribute
+description options_.
 
 <sup>1</sup>_A VO is an organization that includes members whose identity information is
 obtained from multiple sources, at least one of which is external to the organization.
@@ -281,6 +296,20 @@ released by the client.
 mobile;internal: +1 646 555 1212
 ```
 
+## `preferred` Attribute Description Option
+
+Where an attribute may have multiple values, the value considered preferred in
+its context. For example, if a record indicates multiple email addresses, this
+flag indicates which one the subject prefers. Only one value for a particular
+attribute may be labeled preferred.
+
+### Example
+
+```
+voPersonVerifiedEmail: user@university.edu
+voPersonVerifiedEmail;preferred: user@company.com
+```
+
 ## `prior` Attribute Description Option
 
 Used to identify a previous (deprecated) value for an attribute. That is, any value
@@ -338,17 +367,29 @@ the definition of that schema.
 voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-use
 ```
 
-# voPerson Object Class and Attributes
+## `type-*` Attribute Description Option
 
-Version 1
+A label indicating the type of a value, where an attribute can have multiple
+types. In general, this option should not be used when a formally defined
+attribute is available. For example, the attribute `mobile` should be used
+rather than `telephoneNumber;type-mobile`.
+
+### Example
+
+```
+cn;type-author: P Q Lee
+```
+
+# voPerson Object Class and Attributes
 
 ## voPerson Object Class Definition
 
 ```
-( 1.3.6.1.4.1.34998.3.3.1
+( 1.3.6.1.4.1.25178.4.1
 	NAME 'voPerson'
 	AUXILIARY
 	MAY ( voPersonAffiliation $
+            voPersonApplicationPassword $
             voPersonApplicationUID $
             voPersonAuthorName $
             voPersonCertificateDN $
@@ -359,7 +400,9 @@ Version 1
             voPersonPolicyAgreement $ 
             voPersonScopedAffiliation $
             voPersonSoRID $
-            voPersonStatus )
+            voPersonStatus $
+            voPersonToken $
+            voPersonVerifiedEmail )
 )
 ```
 
@@ -368,13 +411,13 @@ Version 1
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.10</td>
+  <td>1.3.6.1.4.1.25178.4.1.10</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.10
+<pre>( 1.3.6.1.4.1.25178.4.1.10
         NAME 'voPersonAffiliation'
         DESC 'voPerson Affiliation Within Local Scope'
         EQUALITY caseIgnoreMatch
@@ -418,18 +461,80 @@ voPersonAffiliation: gradstudent
 voPersonAffiliation: researcher
 ```
 
-## `voPersonApplicationUID` Attribute Definition
+## `voPersonApplicationPassword` Attribute Definition
 
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.1</td>
+  <td>1.3.6.1.4.1.25178.4.1.13</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.1
+<pre>( 1.3.6.1.4.1.25178.4.1.13
+        NAME 'voPersonApplicationPassword'
+        DESC 'voPerson Application-Specific Password'
+        EQUALITY octetStringMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.40{128}' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes, when used with `app-` attribute option</td>
+ </tr>
+ 
+ <tr>
+  <th>Attribute Options</th>
+  <td>
+   <ul>
+    <li><code>app-<i>applicationLabel</i></code>: Denotes application password is for</li>
+   </ul>
+  </td>
+ </tr>
+</table>
+
+### Definition
+
+An application specific password, corresponding roughly with the person object
+class *userPassword* attribute, but constrained to one application or one cluster
+of applications. The use of the `app-` attribute option is required to denote the
+target application. Multiple values for the same `app` are permitted when encoded
+in different formats. Formatting is described in [[Stroeder](https://tools.ietf.org/id/draft-stroeder-hashed-userpassword-values-01.html)], ie using `{scheme}` notation.
+
+### Additional Considerations
+
+The LDAP server should be configured appropriately to avoid unauthorized access
+to this attribute (for both read and write purposes, in accordance with local
+requirements). See, for example, the [OpenLDAP Access Control Examples](https://www.openldap.org/doc/admin24/access-control.html#Access%20Control%20Common%20Examples).
+
+### Alternate Approaches
+
+* A similar approach is possible leveraging the already existing *userPassword* attribute,
+  but requiring the use of the `app-` attribute option. However, it is unlikely that
+  existing applications will understand multiple values in the *userPassword* attribute
+  and how to distinguish them using attribute options. This, in turn, could create
+  a security risk.
+
+### Example
+
+```
+voPersonApplicationPassword;app-wiki: {bcrypt}$2y$10$NCAEogo6Q1boibEUAshANeR.Xy5ruAuEgF9us5pDvC.Ujo9kaiwY.
+```
+
+## `voPersonApplicationUID` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.25178.4.1.1</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.25178.4.1.1
         NAME 'voPersonApplicationUID'
         DESC 'voPerson Application-Specific User Identifier'
         EQUALITY caseIgnoreMatch
@@ -439,7 +544,7 @@ voPersonAffiliation: researcher
  
  <tr>
   <th>Multiple Values?</th>
-  <td>Yes</td>
+  <td>Yes, when used with `app-` or `prior` attribute options</td>
  </tr>
  
  <tr>
@@ -483,13 +588,13 @@ voPersonApplicationUID;app-wiki;prior: patlee@myvo.org
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.2</td>
+  <td>1.3.6.1.4.1.25178.4.1.2</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.2
+<pre>( 1.3.6.1.4.1.25178.4.1.2
         NAME 'voPersonAuthorName'
         DESC 'voPerson Author Name'
         EQUALITY caseIgnoreMatch
@@ -533,13 +638,13 @@ voPersonAuthorName;prior: P Q Smith
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.3</td>
+  <td>1.3.6.1.4.1.25178.4.1.3</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.3
+<pre>( 1.3.6.1.4.1.25178.4.1.3
         NAME 'voPersonCertificateDN'
         DESC 'voPerson Certificate Distinguished Name'
         EQUALITY distinguishedNameMatch
@@ -586,13 +691,13 @@ voPersonCertificateDN;scope-cert1: CN=Pat Lee A251,O=Example,C=US,DC=cilogon,DC=
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.4</td>
+  <td>1.3.6.1.4.1.25178.4.1.4</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.4
+<pre>( 1.3.6.1.4.1.25178.4.1.4
         NAME 'voPersonCertificateIssuerDN'
         DESC 'voPerson Certificate Issuer DN'
         EQUALITY distinguishedNameMatch
@@ -636,13 +741,13 @@ voPersonCertificateDN;scope-cert1: CN=CILogon Basic CA 1, O=CILogon, C=US, DC=ci
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.11</td>
+  <td>1.3.6.1.4.1.25178.4.1.11</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.11
+<pre>( 1.3.6.1.4.1.25178.4.1.11
         NAME 'voPersonExternalAffiliation'
         DESC 'voPerson Scoped External Affiliation'
         EQUALITY caseIgnoreMatch
@@ -687,13 +792,13 @@ voPersonExternalAffiliation: protocol-rpg@university.edu
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.5</td>
+  <td>1.3.6.1.4.1.25178.4.1.5</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.5
+<pre>( 1.3.6.1.4.1.25178.4.1.5
         NAME 'voPersonExternalID'
         DESC 'voPerson Scoped External Identifier'
         EQUALITY caseIgnoreMatch
@@ -737,6 +842,7 @@ necessary to generate it.
 ```
 voPersonExternalID: plee@university.edu
 voPersonExternalID: 610400998542241058734@google.com
+voPersonExternalID: https://university.edu/idp/shibboleth!https://research.org/shibboleth!a6c2c4d4-08b9-4ca7-8ff9-43d83e6e1d35
 ```
 
 ## `voPersonID` Attribute Definition
@@ -744,13 +850,13 @@ voPersonExternalID: 610400998542241058734@google.com
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.6</td>
+  <td>1.3.6.1.4.1.25178.4.1.6</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.6
+<pre>( 1.3.6.1.4.1.25178.4.1.6
         NAME 'voPersonID'
         DESC 'voPerson Unique Identifier'
         EQUALITY caseIgnoreMatch
@@ -800,13 +906,13 @@ voPersonID: V097531
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.7</td>
+  <td>1.3.6.1.4.1.25178.4.1.7</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.7
+<pre>( 1.3.6.1.4.1.25178.4.1.7
         NAME 'voPersonPolicyAgreement'
         DESC 'voPerson Policy Agreement Indicator'
         EQUALITY caseIgnoreMatch
@@ -852,13 +958,13 @@ voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-us
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.12</td>
+  <td>1.3.6.1.4.1.25178.4.1.12</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.12
+<pre>( 1.3.6.1.4.1.25178.4.1.12
         NAME 'voPersonScopedAffiliation'
         DESC 'voPerson Affiliation With Explicit Local Scope'
         EQUALITY caseIgnoreMatch
@@ -897,13 +1003,13 @@ Will vary by protocol.
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.8</td>
+  <td>1.3.6.1.4.1.25178.4.1.8</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.8
+<pre>( 1.3.6.1.4.1.25178.4.1.8
         NAME 'voPersonSoRID'
         DESC 'voPerson External Identifier'
         EQUALITY caseIgnoreMatch
@@ -950,13 +1056,13 @@ voPersonSoRID;scope-hrms: E00747400
 <table>
  <tr>
   <th>OID</th>
-  <td>1.3.6.1.4.1.34998.3.3.1.9</td>
+  <td>1.3.6.1.4.1.25178.4.1.9</td>
  </tr>
  
  <tr>
   <th>RFC4512 Definition</th>
   <td>
-<pre>( 1.3.6.1.4.1.34998.3.3.1.9
+<pre>( 1.3.6.1.4.1.25178.4.1.9
         NAME 'voPersonStatus'
         DESC 'voPerson Status'
         EQUALITY caseIgnoreMatch
@@ -1004,6 +1110,111 @@ though the values of this attribute are not constrained to them:
 
 ```
 voPersonStatus: active
+```
+
+## `voPersonToken` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.25178.4.1.15</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.25178.4.1.15
+        NAME 'voPersonToken'
+        DESC 'voPerson Token'
+        EQUALITY caseExactMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes</td>
+ </tr>
+
+ <tr>
+  <th>Attribute Options</th>
+  <td>
+   <ul>
+    <li><code>type-</code>: Denotes the type of the token</li>
+   </ul>
+  </td>
+ </tr>
+</table>
+
+### Definition
+
+An identifier for an authentication token associated with the person, typically
+a token serial number.
+
+### Example
+
+```
+voPersonToken: SERIAL12345
+voPresonToken;type-totp: T0067890
+```
+
+## `voPersonVerifiedEmail` Attribute Definition
+
+<table>
+ <tr>
+  <th>OID</th>
+  <td>1.3.6.1.4.1.25178.4.1.14</td>
+ </tr>
+ 
+ <tr>
+  <th>RFC4512 Definition</th>
+  <td>
+<pre>( 1.3.6.1.4.1.25178.4.1.14
+        NAME 'voPersonVerifiedEmail'
+        DESC 'voPerson Verified Email Address'
+        EQUALITY caseIgnoreMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )</pre>
+  </td>
+ </tr>
+ 
+ <tr>
+  <th>Multiple Values?</th>
+  <td>Yes</td>
+ </tr>
+ 
+ <tr>
+  <th>Attribute Options</th>
+  <td>
+   <ul>
+    <li><code>preferred</code>: Denotes the preferred verified email address for the record</li>
+   </ul>
+  </td>
+ </tr>
+</table>
+
+### Definition
+
+An email address of the same definition as the inetOrgPerson `mail` attribute
+([RFC 4524](https://tools.ietf.org/html/rfc4524)), with the additional characteristic
+that the address has been verified as being controlled by the subject of the
+record. The specific verification mechanism is not defined here, but is expected
+to meet industry best practices in the context in which the email address is
+asserted.
+
+This attribute can be used to supplement or replace `mail`.
+
+### Alternate Approaches
+
+* A `verified` attribute description option could be attached to `mail`, which
+  would be clearer and less redundant. However, `mail` is not a voPerson
+  attribute, and so recommending the use of an attribute description option
+  could cause confusion for existing clients.
+
+### Example
+
+```
+voPersonVerifiedEmail: user@university.edu
+voPersonVerifiedEmail;preferred: user@company.com
 ```
 
 # Recommended Attribute Usage
@@ -1151,7 +1362,7 @@ displayName: Pat Lee
 eduPersonAffiliation: staff
 eduPersonAffiliation: member
 eduPersonNickName: Pat
-eduPersonOrcid: http://orcid.org/0000-0002-1825-0097
+eduPersonOrcid: https://orcid.org/0000-0002-1825-0097
 givenName: Patricia
 sn: Lee
 sn;prior: Smith
@@ -1170,7 +1381,12 @@ voPersonID;prior: V097522
 voPersonPolicyAgreement;time-1516593822: https://myvo.org/policies/acceptable-use
 voPersonSoRID;scope-hrms: E00747400
 voPersonStatus: active
+voPersonVerifiedEmail: plee@university.edu
 ```
+
+# Related Documents
+
+1. [voPerson SAML](aux/voPerson-SAML.md) Representation
 
 # References
 
@@ -1185,6 +1401,7 @@ voPersonStatus: active
 1. [RFC 4524](https://tools.ietf.org/html/rfc4524) COSINE LDAP/X.500 Schema
 1. [RFC 6648](https://tools.ietf.org/html/rfc6648) Deprecating the "X-" Prefix and Similar Constructs in Application Protocols
 1. [SAML V2.0 Subject Identifier Attributes Profile Version 1.0](https://wiki.oasis-open.org/security/SAMLSubjectIDAttr)
+1. [Stroeder](https://tools.ietf.org/id/draft-stroeder-hashed-userpassword-values-01.html) Lightweight Directory Access Protocol (LDAP): Hashed Attribute values for 'userPassword'
 
 # Changelog
 
@@ -1199,6 +1416,15 @@ version change will not break existing LDAP entries.
 
 A major version change (eg: v1.0.0 to v2.0.0) requires a reconfiguration to the
 LDAP server, and may require existing records to be modified.
+
+## [v2.0.0](https://github.com/voperson/voperson/tree/2.0.0)
+
+* Management of voPerson transitioned to [REFEDS Schema Editorial Board](https://wiki.refeds.org/display/STAN/).
+* Added voPerson SAML Representation.
+* Added voposixaccount schema and associated attributes.
+* Added voPersonApplicationPassword, voPersonVerifiedEmail, and voPersonToken.
+* Migrated OIDs to REFEDS/GÉANT OID space.
+* Errata.
 
 ## [v1.1.0](https://github.com/voperson/voperson/tree/1.1.0)
 

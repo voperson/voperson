@@ -1,0 +1,54 @@
+# GÉANT/REFEDS assigned 1.3.6.1.4.1.25178.4 to voPerson
+objectIdentifier voPersonRoot 1.3.6.1.4.1.25178.4
+# voPosixAccount object class is 1.3.6.1.4.1.25178.4.2
+objectIdentifier voPosixAccountObjectClass voPersonRoot:2
+# voPosixGroup object class is 1.3.6.1.4.1.25178.4.3
+objectIdentifier voPosixGroupObjectClass voPersonRoot:3
+
+attributeType ( voPosixAccountObjectClass:1
+        NAME 'voPosixAccountGecos'
+        DESC 'voPerson domain specific GECOS field'
+        EQUALITY caseIgnoreMatch
+        SUBSTR caseIgnoreSubstringsMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+
+attributeType ( voPosixAccountObjectClass:2
+        NAME 'voPosixAccountGidNumber'
+        DESC 'voPerson domain specific primary group identifier'
+        EQUALITY integerMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.27' )
+
+attributeType ( voPosixAccountObjectClass:3
+        NAME 'voPosixAccountHomeDirectory'
+        DESC 'voPerson domain specific absolute path to the home directory'
+        EQUALITY caseExactMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+
+attributeType ( voPosixAccountObjectClass:4
+        NAME 'voPosixAccountLoginShell'
+        DESC 'voPerson domain specific path to the login shell'
+        EQUALITY caseExactMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.15' )
+
+attributeType ( voPosixAccountObjectClass:5
+        NAME 'voPosixAccountUidNumber'
+        DESC 'voPerson domain specific unique user identifier'
+        EQUALITY integerMatch
+        SYNTAX '1.3.6.1.4.1.1466.115.121.1.27' )
+
+objectClass ( voPosixAccountObjectClass
+	NAME 'voPosixAccount'
+	AUXILIARY
+  MUST ( cn $
+         uid $
+         voPosixAccountUidNumber $
+         voPosixAccountGidNumber $
+         voPosixAccountHomeDirectory )
+	MAY ( voPosixAccountLoginShell $
+        voPosixAccountGecos ) )
+
+objectClass ( voPosixGroupObjectClass
+  NAME 'voPosixGroup'
+  AUXILIARY
+  MUST ( cn $ voPosixAccountGidNumber )
+  MAY ( memberUid ) )
